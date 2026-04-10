@@ -19,7 +19,7 @@ function OrderEntryPage({ editingId, onComplete }) {
   useEffect(() => {
     if (isEditMode) {
       const fetchOrder = async () => {
-        const res = await fetch(`http://localhost:8080/api/admin/orders/${editingId}`, { headers: authHeader });
+        const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/admin/orders/${editingId}`, { headers: authHeader });
         if (res.ok) {
           const data = await res.json();
           setFormData({
@@ -57,7 +57,9 @@ function OrderEntryPage({ editingId, onComplete }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const url = isEditMode ? `http://localhost:8080/api/admin/orders/${editingId}` : "http://localhost:8080/api/admin/orders";
+    const url = isEditMode ? 
+    `${import.meta.env.VITE_API_BASE_URL}/api/admin/orders/${editingId}` : `${import.meta.env.VITE_API_BASE_URL}/api/admin/orders`;
+    
     const method = isEditMode ? "PUT" : "POST";
 
     const response = await fetch(url, {

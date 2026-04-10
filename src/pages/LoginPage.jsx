@@ -14,7 +14,7 @@ function LoginPage() {
 
         try {
             const response = await
-        fetch("http://localhost:8080/api/admin/settings/check", {
+        fetch(`${import.meta.env.VITE_API_BASE_URL}/api/admin/settings/check`, {
             headers: {
                 "Authorization": `Basic ${encodedCredentials}`
             }

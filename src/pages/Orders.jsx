@@ -17,8 +17,8 @@ function Orders() {
 
   const fetchOrders = async () => {
     const url = searchQuery 
-      ? `http://localhost:8080/api/admin/orders/search?query=${searchQuery}`
-      : "http://localhost:8080/api/admin/orders";
+      ? `${import.meta.env.VITE_API_BASE_URL}/api/admin/orders/search?query=${searchQuery}`
+      : `${import.meta.env.VITE_API_BASE_URL}/api/admin/orders`;
     
     const res = await fetch(url, { headers: authHeader });
     if (res.ok) setOrders(await res.json());
@@ -37,7 +37,7 @@ function Orders() {
 
   const handleDelete = async (id) => {
     if (window.confirm("Delete this order?")) {
-      await fetch(`http://localhost:8080/api/admin/orders/${id}`, { method: 'DELETE', headers: authHeader });
+      await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/admin/orders/${id}`, { method: 'DELETE', headers: authHeader });
       fetchOrders();
     }
   };

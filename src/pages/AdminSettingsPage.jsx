@@ -15,7 +15,7 @@ function AdminSettingsPage() {
   const fetchSettings = async () => {
     const token = localStorage.getItem("userAuth");
     try {
-      const response = await fetch("http://localhost:8080/api/admin/settings", {
+      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/admin/settings`, {
         headers: {
           "Authorization": `Basic ${token}`
         }
@@ -39,7 +39,7 @@ function AdminSettingsPage() {
   const handleSave = async () => {
     setMessage('Saving...');
     try {
-      const response = await fetch("http://localhost:8080/api/admin/settings", {
+      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/admin/settings`, {
         method: "PUT",
         headers: { ...authHeader, "Content-Type": "application/json" },
         body: JSON.stringify(settings),
