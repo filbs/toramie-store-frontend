@@ -1,0 +1,93 @@
+/* MODE 1: PUBLIC (Full Page) */
+.calc-container-public {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(180deg, #FFF9E3 0%, #E8EFFF 100%);
+}
+
+/* MODE 2: ADMIN (Contained in Layout) */
+.calc-container-admin {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(180deg, #FFF9E3 0%, #E8EFFF 100%);
+  margin: -40px; /* Bleeds out to fill the page-container padding */
+  padding: 40px;
+}
+
+.calc-content-wrapper {
+  width: 100%;
+  max-width: 420px;
+  text-align: center;
+}
+
+.calc-logo-img {
+  width: 100px;
+  border-radius: 25px;
+  margin-bottom: 15px;
+}
+
+.calc-subtitle {
+  color: #A0AEC0;
+  font-size: 11px;
+  letter-spacing: 2px;
+  margin-bottom: 25px;
+}
+
+.calc-card-width {
+  text-align: left; /* Form inside the card stays left-aligned */
+}
+
+.calc-input-group {
+  margin-bottom: 20px;
+}
+
+.calc-input-group label {
+  display: block;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--toramie-gold);
+  margin-bottom: 8px;
+}
+
+.calc-input-group input, 
+.calc-input-group select {
+  width: 100%;
+  padding: 12px 15px;
+  border-radius: 12px;
+  border: 2px solid #E2E8F0;
+  font-family: 'Quicksand', sans-serif;
+  background-color: #FAFBFF;
+}
+
+.w-full-btn {
+  width: 100%;
+  padding: 15px !important;
+}
+
+.total-result-box {
+  background-color: #F8FAFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 18px;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 25px;
+}
+
+.total-amount {
+  color: var(--toramie-blue);
+  font-weight: 700;
+  font-size: 1.3rem;
+}
+
+.powered-by {
+  margin-top: 25px;
+  font-size: 10px;
+  color: #CBD5E0;
+}

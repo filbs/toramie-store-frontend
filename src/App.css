@@ -1,0 +1,357 @@
+/* THE LAYOUT ENGINE */
+.admin-layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+.sidebar {
+  width: var(--sidebar-width);
+  background-color: var(--sidebar-bg);
+  height: 100vh;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 1000;
+  padding: 2rem 1.2rem;
+}
+
+.main-content {
+  flex: 1;
+  margin-left: var(--sidebar-width);
+  display: flex;
+  flex-direction: column;
+  min-width: 0; /* CRITICAL: Allows flex children to shrink/contain overflow */
+}
+
+.page-container {
+  padding: 40px;
+  flex-grow: 1; /* THIS IS THE KEY: it pushes the container to the bottom */
+  display: flex;
+  flex-direction: column;
+}
+
+/* UNIVERSAL COMPONENT: THE CARD */
+.card {
+  background: white;
+  border-radius: 24px;
+  padding: 30px;
+  box-shadow: var(--shadow-soft);
+  margin-bottom: 25px;
+  
+  width: 100%; /* Take up available space */
+  max-width: calc(100vw - var(--sidebar-width) - 80px); /* Screen width minus sidebar and page padding */
+  overflow: hidden; /* Don't let children push the card wider */
+}
+
+.modern-table {
+  width: 100%;
+  border-collapse: separate !important; /* Required for sticky */
+  border-spacing: 0 10px; /* Floating row effect */
+}
+
+.modern-table td {
+  padding: 15px;
+  background-color: var(--white);
+  border-top: 1px solid #F1F5F9;
+  border-bottom: 1px solid #F1F5F9;
+  font-size: 14px;
+}
+
+.modern-table th {
+  padding: 10px 15px;
+  text-align: left;
+  font-size: 12px;
+  text-transform: uppercase;
+  color: #A0AEC0;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+/* Row rounding */
+.modern-table tr td:first-child { border-left: 1px solid #F1F5F9; border-radius: 12px 0 0 12px; }
+.modern-table tr td:last-child { border-right: 1px solid #F1F5F9; border-radius: 0 12px 12px 0; }
+
+.sticky-id th:first-child,
+.sticky-id td:first-child {
+  position: sticky;
+  left: 0;
+  z-index: 30; /* High number to win the fight */
+  background-color: white; /* Force solid color */
+  border-right: 1px solid #ddd;
+}
+
+.table-scroll-wrapper {
+  width: 100%;
+  overflow-x: auto; /* Forces the scrollbar to appear HERE, not at the bottom of the page */
+  border-radius: 12px;
+  display: block; /* Ensures it behaves like a container */
+}
+
+/* INPUTS */
+input, select {
+  padding: 12px 15px;
+  border-radius: 12px;
+  border: 1px solid #E2E8F0;
+  outline: none;
+  background: #FAFBFF;
+}
+
+/* --- HEADER ALIGNMENT --- */
+.page-header {
+  display: flex;
+  flex-direction: column; /* Stack Title and Actions */
+  align-items: flex-start; 
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.header-actions {
+  display: flex;
+  gap: 12px;
+  width: 100%; /* Allows search to stay reachable */
+}
+
+/* UNIVERSAL BUTTONS */
+.btn-action {
+  padding: 8px 16px;
+  border-radius: 10px;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 13px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-edit {
+  background-color: #E8EFFF;
+  color: var(--toramie-blue);
+}
+
+.btn-edit:hover {
+  background-color: var(--toramie-blue);
+  color: white;
+}
+
+.btn-delete {
+  background-color: #FFF5F5;
+  color: #E53E3E;
+  margin-left: 5px;
+}
+
+.btn-delete:hover {
+  background-color: #E53E3E;
+  color: white;
+}
+
+.btn-save-form {
+  width: 100%;
+  padding: 14px;
+  background-color: var(--toramie-blue);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 15px;
+  cursor: pointer;
+  margin-top: 20px;
+  box-shadow: 0 4px 12px rgba(42, 59, 143, 0.2);
+}
+
+.btn-save-form:hover {
+  filter: brightness(1.1);
+  transform: translateY(-1px);
+}
+
+.btn-coral { background-color: var(--toramie-coral); color: white; }
+.btn-blue { background-color: var(--toramie-blue); color: white; }
+
+.calc-gradient-bg {
+  /* Use flex-grow so it fills the remaining space of the parent */
+  flex-grow: 1; 
+  background: linear-gradient(180deg, #FFF9E3 0%, #E8EFFF 100%);
+  margin: -40px; /* Expand back into the parent's padding */
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.finance-table {
+  min-width: 2000px; /* Or whatever width you need */
+  border-collapse: separate !important;
+  border-spacing: 0 10px;
+}
+
+.finance-table th:first-child,
+.finance-table td:first-child {
+  position: sticky;
+  left: 0;
+  /* High z-index to stay above other scrolling text */
+  z-index: 20; 
+  /* Solid background is mandatory so other text doesn't show through */
+  background-color: white; 
+  /* Visual separator */
+  border-right: 2px solid #E2E8F0;
+}
+
+.finance-table th:first-child {
+  z-index: 21; /* Must be higher than the body cells */
+  background-color: #F8FAFC; /* Match your header gray */
+}
+
+.finance-table td {
+  background-color: white;
+  border-bottom: 1px solid #edf2f7;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(26, 28, 35, 0.6); /* Semi-transparent dark bg */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999; /* Highest priority */
+  backdrop-filter: blur(4px); /* Modern blur effect */
+}
+
+.modal-content {
+  background: white;
+  padding: 40px;
+  border-radius: 24px;
+  width: 90%;
+  max-width: 800px;
+  max-height: 90vh;
+  overflow-y: auto; /* Scroll if form is too long */
+  position: relative;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+}
+
+.tab-group {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 25px;
+  background: #f1f5f9;
+  padding: 5px;
+  border-radius: 12px;
+  width: fit-content;
+}
+
+.tab-btn {
+  padding: 8px 20px;
+  border-radius: 8px;
+  border: none;
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 600;
+  font-size: 13px;
+  cursor: pointer;
+  background: transparent;
+  color: #64748b;
+  transition: all 0.3s ease;
+}
+
+.tab-btn.active {
+  background: white;
+  color: var(--toramie-blue);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.close-modal-btn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: none;
+  background: #f1f5f9;
+  color: #64748b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.close-modal-btn:hover {
+  background: #e2e8f0;
+  color: #ef4444;
+  transform: rotate(90deg);
+}
+
+.settings-table th {
+  background-color: #F8FAFF !important;
+  color: var(--toramie-blue) !important;
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-bottom: 2px solid var(--toramie-pastel-blue) !important;
+}
+
+/* Section Dividers (The rows like "Base Rates", "Shipping Fees") */
+.settings-section-header {
+  background-color: #FAFBFF !important;
+}
+
+.section-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--toramie-blue);
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+/* Modernizing the inputs in the table */
+.settings-input {
+  width: 100%;
+  max-width: 200px;
+  padding: 10px 15px;
+  border-radius: 10px;
+  border: 1.5px solid #E2E8F0;
+  background-color: #ffffff;
+  font-family: 'Inter', sans-serif;
+  transition: all 0.2s;
+}
+
+.settings-input:focus {
+  border-color: var(--toramie-blue);
+  box-shadow: 0 0 0 3px rgba(42, 59, 143, 0.1);
+  outline: none;
+}
+
+/* The Save Button for Settings */
+.btn-save-settings {
+  background-color: #2F855A; /* Deep Professional Green */
+  color: white;
+  padding: 14px 30px;
+  border-radius: 12px;
+  border: none;
+  font-weight: 700;
+  font-family: 'Quicksand', sans-serif;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: all 0.3s ease;
+  margin-top: 30px;
+  box-shadow: 0 4px 12px rgba(47, 133, 90, 0.2);
+}
+
+.btn-save-settings:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(47, 133, 90, 0.3);
+  filter: brightness(1.1);
+}
+
+input:focus { border-color: var(--toramie-blue); }
