@@ -58,7 +58,7 @@ function Orders() {
             type="text" 
             placeholder="Search..." 
             className="search-input" 
-            onChange={(e) => setQuery(e.target.value)} 
+            onChange={(e) => setSearchQuery(e.target.value)} 
             style={{ width: '300px' }}
           />
           <button className="btn-action btn-blue" onClick={() => setShowModal(true)}>
